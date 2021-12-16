@@ -7,11 +7,11 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">ノートリスト</a>
+          <a class="nav-link" href="#"><i class="fas fa-file-alt"></i>ノートリスト</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown">
-            学習用ページ
+            <i class="fas fa-user-graduate"></i>学習用ページ
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">学習1</a></li>
