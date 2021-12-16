@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style scoped>
-.drective-page {
+.directive-page {
   padding: 20px;
 }
 </style>
