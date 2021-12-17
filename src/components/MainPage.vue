@@ -49,14 +49,20 @@ export default {
       // spliceで該当の要素を削除
       targetList.splice(index, 1);
     },
-    onEditNoteStart: function(editNote) {
-      for (let note of this.noteList) {
+    onEditNoteStart: function(editNote, parentNote) {
+      const targetList = parentNote == null ? this.noteList: parentNote.children;
+      for (let note of targetList) {
         note.editing = (note.id === editNote.id);
+        // 子ノートを基準として再起的に呼び出し
+        this.onEditNoteStart(editNote, note);
       }
     },
-    onEditNoteEnd: function() {
-      for (let note of this.noteList) {
+    onEditNoteEnd: function(parentNote) {
+      const targetList = parentNote == null ? this.noteList: parentNote.children;
+      for (let note of targetList) {
         note.editing = false;
+        // 子ノートを基準として再起的に呼び出し
+        this.onEditNoteEnd(note);
       }
     },
     onAddChildNote: function(note) {
