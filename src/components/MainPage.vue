@@ -5,6 +5,7 @@
       <NoteItem
       v-for="note in noteList"
       :note="note"
+      :layer="1"
       :key="note.id"
       @delete="onDeleteNote"
       @editStart="onEditNoteStart"
