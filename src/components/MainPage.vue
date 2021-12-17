@@ -9,6 +9,7 @@
       @delete="onDeleteNote"
       @editStart="onEditNoteStart"
       @editEnd="onEditNoteEnd"
+      @addChild="onAddChildNote"
       />
       <!-- ノート追加ボタン -->
       <button class="transparent" @click="onClickButtonAdd">
@@ -38,13 +39,15 @@ export default {
         name: '新規ノート',
         mouseover: false,
         editing: false,
+        children: [],
       })
     },
-    onDeleteNote: function(deleteNote) {
+    onDeleteNote: function(parentNote, note) {
+      const targetList = parentNote == null? this.noteList: parentNote.children;
       // indexOfで要素が何番目にあるか判定
-      const index = this.noteList.indexOf(deleteNote);
+      const index = targetList.indexOf(note);
       // spliceで該当の要素を削除
-      this.noteList.splice(index, 1);
+      targetList.splice(index, 1);
     },
     onEditNoteStart: function(editNote) {
       for (let note of this.noteList) {
@@ -55,6 +58,15 @@ export default {
       for (let note of this.noteList) {
         note.editing = false;
       }
+    },
+    onAddChildNote: function(note) {
+      note.children.push({
+        id: new Date().getTime().toString(16),
+        name: note.name + 'の子',
+        mouseover: false,
+        editing: false,
+        children: [],
+      });
     },
   },
   components: {
